@@ -32,8 +32,16 @@ yay -S --noconfirm $YAY_PKGS
 if [ ! -d "$HOME/dotfiles" ]; then
   git clone https://github.com/<TON_USER>/<TON_REPO>.git "$HOME/dotfiles"
 fi
+# Supprimer config Hyprland par défaut si présente
+if [ -f "$HOME/.config/hypr/hyprland.conf" ]; then
+    rm -f "$HOME/.config/hypr/hyprland.conf"
+fi
+
 cd "$HOME/dotfiles"
-stow --target="$HOME" hyp
+
+# --- Stow configs ---
+stow --target="$HOME" bin hypr waybar zsh
+sudo stow --target=/ sddm
 
 # --- Activer SDDM ---
 sudo systemctl enable sddm
