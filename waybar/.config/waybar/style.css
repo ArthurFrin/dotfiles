@@ -1,0 +1,6 @@
+* { font-family: "JetBrainsMono Nerd Font", "DejaVu Sans", sans-serif; font-size: 12px; }
+window#waybar { background: #141418; color: #e5e5e5; }
+#workspaces button { padding: 0 8px; border-radius: 8px; }
+#workspaces button.active { background: #4c566a; }
+#pulseaudio, #network, #battery, #clock, #tray { padding: 0 10px; }
+
