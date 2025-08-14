@@ -1,13 +1,12 @@
 #!/bin/bash
-set -e
 
 # --- Variables ---
-SDDM_THEME="sddm-theme-chili"     # ou "sddm-astronaut-theme"
+SDDM_THEME="chili-sddm-theme"     # ou "sddm-astronaut-theme"
 SDDM_THEME_NAME="chili"           # ou "astronaut"
 
 # --- Paquets ---
 PACMAN_PKGS="hyprland waybar kitty ttf-jetbrains-mono-nerd ttf-dejavu base-devel git stow firefox zsh sddm"
-YAY_PKGS="discord zen-browser-bin $SDDM_THEME walker"
+YAY_PKGS="discord zen-browser-bin $SDDM_THEME walker-bin"
 
 # --- Officiels ---
 sudo pacman -Syu --noconfirm $PACMAN_PKGS
@@ -40,7 +39,7 @@ fi
 cd "$HOME/dotfiles"
 
 # --- Stow configs ---
-stow --target="$HOME" bin hypr waybar zsh
+stow --target="$HOME" bin hypr waybar
 sudo stow --target=/ sddm
 
 # --- Activer SDDM ---
