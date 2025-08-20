@@ -5,7 +5,7 @@ SDDM_THEME="chili-sddm-theme"     # ou "sddm-astronaut-theme"
 SDDM_THEME_NAME="chili"           # ou "astronaut"
 
 # --- Paquets ---
-PACMAN_PKGS="hyprland waybar kitty ttf-jetbrains-mono-nerd ttf-dejavu base-devel git stow firefox zsh sddm hyprpaper"
+PACMAN_PKGS="hyprland waybar kitty ttf-dejavu nerd-fonts base-devel git stow firefox zsh sddm hyprpaper"
 YAY_PKGS="zen-browser-bin $SDDM_THEME walker-bin bibata-cursor-theme-bin"
 
 # --- Officiels ---
