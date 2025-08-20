@@ -1,6 +1,31 @@
-* { font-family: "JetBrainsMono Nerd Font", "DejaVu Sans", sans-serif; font-size: 12px; }
-window#waybar { background: #141418; color: #e5e5e5; }
-#workspaces button { padding: 0 8px; border-radius: 8px; }
-#workspaces button.active { background: #4c566a; }
-#pulseaudio, #network, #battery, #clock, #tray { padding: 0 10px; }
+* {
+    font-family: "JetBrainsMono Nerd Font", "DejaVu Sans", sans-serif;
+    font-size: 12px;
+}
 
+window#waybar {
+    background: #141418;
+    color: #e5e5e5;
+}
+
+#workspaces button {
+    padding: 0 8px;
+    border-radius: 6px;
+    transition: background 0.2s, box-shadow 0.2s;
+}
+/* Effet hover moderne */
+#workspaces button:hover {
+    background: #3b4252;
+    box-shadow: 0 2px 8px 0 rgba(94,129,172,0.18);
+}
+
+#workspaces button.active {
+    background: #4c566a;
+}
+
+#pulseaudio,
+#network,
+#clock,
+#tray {
+    padding: 0 10px;
+}
