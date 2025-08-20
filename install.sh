@@ -48,4 +48,19 @@ sudo systemctl enable sddm
 # --- Zsh par défaut ---
 chsh -s /bin/zsh
 
+# --- Starship ---
+if ! command -v starship &> /dev/null; then
+  curl -sS https://starship.rs/install.sh | sh
+fi
+
+# --- zsh-autosuggestions ---
+ZSH_CUSTOM="$HOME/.zsh"
+if [ ! -d "$ZSH_CUSTOM" ]; then
+  mkdir -p "$ZSH_CUSTOM"
+fi
+if [ ! -d "$ZSH_CUSTOM/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/zsh-autosuggestions"
+fi
+
+
 echo "✅ Installation terminée. Reboot recommandé."

@@ -1,0 +1,12 @@
+# ~/.config/starship.toml
+
+# Empêche Starship d'ajouter une nouvelle ligne avant le prompt
+add_newline = false
+
+format = """
+$directory$git_branch
+$character
+"""
+
+[character]
+error_symbol = "💩"
