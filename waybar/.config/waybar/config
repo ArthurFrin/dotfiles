@@ -2,16 +2,37 @@
   "output": "HDMI-A-1",
   "layer": "top",
   "position": "top",
+
   "modules-left": ["hyprland/workspaces"],
   "modules-center": ["clock"],
   "modules-right": ["pulseaudio", "network", "tray"],
 
-  "hyprland/workspaces": { "all-outputs": true, "format": "{icon}" },
-  "hyprland/window": { "max-length": 60, "separate-outputs": false },
+  "pulseaudio": {
+    "format": "{icon}  {volume}%",
+    "format-muted": "  mute",
+    "tooltip": false,
+    "format-icons": {
+      "headphones": "",
+      "handsfree": "",
+      "headset": "",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": ["", "", ""]
+    }
+  },
 
-  "pulseaudio": { "format": "{volume}% {icon}", "tooltip": false },
-  "network": { "format-wifi": "{essid}", "format-ethernet": "eth {ifname}", "format-disconnected": "offline" },
-  "clock": { "format": "{:%a %d %b  %H:%M}" },
-  "tray": { "spacing": 6 }
+  "network": {
+    "format-wifi": "{essid} ",
+    "format-ethernet": " {ifname}",
+    "format-disconnected": " offline"
+  },
+
+  "clock": {
+    "format": "  {:%a %d %b  %H:%M}"
+  },
+
+  "tray": {
+    "spacing": 8
+  }
 }
-
