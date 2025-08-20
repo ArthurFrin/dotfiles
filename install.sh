@@ -6,7 +6,7 @@ SDDM_THEME_NAME="chili"           # ou "astronaut"
 
 # --- Paquets ---
 PACMAN_PKGS="hyprland waybar kitty ttf-jetbrains-mono-nerd ttf-dejavu base-devel git stow firefox zsh sddm hyprpaper"
-YAY_PKGS="discord zen-browser-bin $SDDM_THEME walker-bin"
+YAY_PKGS="zen-browser-bin $SDDM_THEME walker-bin bibata-cursor-theme-bin"
 
 # --- Officiels ---
 sudo pacman -Syu --noconfirm $PACMAN_PKGS
@@ -39,7 +39,7 @@ fi
 cd "$HOME/dotfiles"
 
 # --- Stow configs ---
-stow --target="$HOME" bin hypr waybar wallpapers
+stow --target="$HOME" bin hypr waybar wallpapers fastfetch
 sudo stow --target=/ sddm
 
 # --- Activer SDDM ---

@@ -31,3 +31,15 @@ killall waybar && waybar &
 
 zen: enlever la zone de fermeteur au hover:
 dans about:config -> zen.view.experimental-no-window-controls = false
+
+
+
+
+### Forcer XCursor par défaut (pour Electron/XWayland)
+```sh
+mkdir -p ~/.icons/default
+cat > ~/.icons/default/index.theme <<'EOF'
+[Icon Theme]
+Inherits=Bibata-Modern-Ice
+EOF
+```

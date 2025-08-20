@@ -1,0 +1,68 @@
+{
+  "display": {
+    "color": {
+      "keys": "cyan",          // Couleur des clés modules
+      "title": "#cba6f7"       // Couleur du titre
+    }
+  },
+  "logo": {
+    "source": "Linux_small",
+    "color": {
+      "1": "#cba6f7",
+      "2": "#cba6f7"
+    },
+    "padding": {
+      "left": 5,
+      "top": 2
+    }
+  },
+  "modules": [
+    {
+      "type": "title",
+      "userColor": "#6b3ab4",
+      "atColor": "white",
+      "hostColor": "#6b3ab4"
+    },
+    "separator",
+    {
+      "type": "os",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "kernel",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "uptime",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "packages",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "shell",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "wm",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "de",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "gpu",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "cpu",
+      "keyColor": "#6b3ab4"
+    },
+    {
+      "type": "memory",
+      "keyColor": "#6b3ab4"
+    }
+  ]
+}
