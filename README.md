@@ -28,3 +28,6 @@ makepkg -si
 killall waybar && waybar &
 ```
 - Les raccourcis Hyprland sont adaptés pour clavier AZERTY dans `hypr/.config/hypr/hyprland.conf`.
+
+zen: enlever la zone de fermeteur au hover:
+dans about:config -> zen.view.experimental-no-window-controls = false
