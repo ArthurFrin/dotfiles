@@ -20,3 +20,7 @@ eval "$(starship init zsh)"
 
 # Charger zsh-autosuggestions pour des suggestions de commandes
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Charger nvm (Node Version Manager)
+export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/init-nvm.sh
