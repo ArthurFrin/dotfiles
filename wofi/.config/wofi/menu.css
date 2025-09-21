@@ -38,7 +38,7 @@ window {
 
 #outer-box {
     margin: 0px;
-    border: 3px solid #6cbdff;
+    border: 3px solid #cba6f7;
     border-radius: 20px;
     background-color: #1e1e2e;
 }
@@ -55,7 +55,7 @@ window {
 }
 
 #img:selected {
-    background-color: #89b4fa;
+    background-color: #cba6f7;
     margin-right: 10px;
     border-radius: 10px;
 }
@@ -66,7 +66,7 @@ window {
     margin: 0px 0px;
     border: none;
     border-radius: 10px;
-    background-color: #89b4fa;
+    background-color: #cba6f7;
 }
 
 #entry {
@@ -80,5 +80,5 @@ window {
     margin: 0px 0px;
     border: none;
     border-radius: 5px;
-    background-color: #89b4fa;
+    background-color: #cba6f7;
 }
