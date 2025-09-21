@@ -15,6 +15,7 @@
   "modules-right": [
     "custom/music",
     "pulseaudio",
+    "tray",
     "bluetooth",
     "backlight",
     "network",
@@ -102,6 +103,9 @@
       "car": "",
       "default": ["", "", ""]
     }
+  },
+  "tray": {
+    "spacing": 8
   },
 
 
