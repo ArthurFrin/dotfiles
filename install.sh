@@ -8,13 +8,10 @@ SDDM_THEME_NAME="chili"           # ou "astronaut"
 PACMAN_PKGS="hyprland waybar kitty ttf-dejavu nerd-fonts base-devel git stow firefox zsh sddm hyprpaper"
 YAY_PKGS="zen-browser-bin $SDDM_THEME bibata-cursor-theme-bin bauh wofi"
 
+echo "$HOME"
+
 # --- Officiels ---
 sudo pacman -Syu --noconfirm $PACMAN_PKGS
-
-# --- Oh My Zsh ---
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
 
 # --- yay ---
 if ! command -v yay &> /dev/null; then
@@ -27,10 +24,6 @@ fi
 # --- AUR (Discord, Zen, Thème SDDM) ---
 yay -S --noconfirm $YAY_PKGS
 
-# --- Dotfiles ---
-if [ ! -d "$HOME/dotfiles" ]; then
-  git clone https://github.com/<TON_USER>/<TON_REPO>.git "$HOME/dotfiles"
-fi
 # Supprimer config Hyprland par défaut si présente
 if [ -f "$HOME/.config/hypr/hyprland.conf" ]; then
     rm -f "$HOME/.config/hypr/hyprland.conf"
