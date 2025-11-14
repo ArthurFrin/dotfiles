@@ -31,11 +31,8 @@ yay -S --noconfirm $YAY_PKGS
 if [ ! -d "$HOME/dotfiles" ]; then
   git clone https://github.com/<TON_USER>/<TON_REPO>.git "$HOME/dotfiles"
 fi
-# Supprimer config Hyprland par défaut si présente
-if [ -f "$HOME/.config/hypr/hyprland.conf" ]; then
-    rm -f "$HOME/.config/hypr/hyprland.conf"
-fi
-
+# Supprimer config Hyprland par defaut
+rm -f "$HOME/.config/hypr/hyprland.conf"
 cd "$HOME/dotfiles"
 
 # --- Stow configs ---
