@@ -32,7 +32,7 @@ fi
 cd "$HOME/dotfiles"
 
 # --- Stow configs ---
-stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh wofi walker
+stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh wofi
 sudo stow --target=/ sddm
 
 # --- Activer SDDM ---
