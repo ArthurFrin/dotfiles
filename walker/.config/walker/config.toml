@@ -1,7 +1,6 @@
 force_keyboard_focus = true                                                 # forces keyboard forcus to stay in Walker
 selection_wrap = true
 
-[ui]
 keybind_hints = false
 
 
