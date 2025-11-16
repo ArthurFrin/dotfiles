@@ -11,6 +11,7 @@ menu() {
   | walker --dmenu -p "Menu…" --width 260
 }
 
+choice="$(menu)"
 
 case "$choice" in
   *Applications*) walker . ;;
@@ -20,4 +21,3 @@ case "$choice" in
   *Reboot*) systemctl reboot ;;
   *Shutdown*) systemctl poweroff ;;
 esac
-
