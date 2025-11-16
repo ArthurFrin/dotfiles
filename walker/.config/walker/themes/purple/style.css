@@ -111,12 +111,11 @@ child:selected .item-box * {
   font-style: italic;
 }
 
-.keybind-hints {
-  display: none;
-  min-width: 0;
-  padding: 0;
-  margin: 0;
+.keybind-hints * {
+  font-size: 0px;
+  color: transparent;
 }
+
 
 .preview {
   background: @background;
