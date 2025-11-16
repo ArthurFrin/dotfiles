@@ -24,6 +24,29 @@ fi
 # --- AUR (Discord, Zen, Thème SDDM) ---
 yay -S --noconfirm $YAY_PKGS
 
+# --- Masquage d'applications inutiles ---
+DESKTOP_DIR="$HOME/.local/share/applications"
+mkdir -p "$DESKTOP_DIR"
+
+DESKTOP_HIDE=(
+  "xgps.desktop"
+  "xgpsspeed.desktop"
+  "qv4l2.desktop"
+  "v4l2ucp.desktop"
+  "avahi-discover.desktop"
+  "avahi-ssh.desktop"
+  "avahi-vnc.desktop"
+  "avahi-zeroconf-browser.desktop"
+)
+
+for f in "${DESKTOP_HIDE[@]}"; do
+    if [ -f "/usr/share/applications/$f" ]; then
+        cp "/usr/share/applications/$f" "$DESKTOP_DIR/$f"
+        echo "NoDisplay=true" >> "$DESKTOP_DIR/$f"
+        echo "→ Masqué : $f"
+    fi
+done
+
 # Supprimer config Hyprland par défaut si présente
 if [ -f "$HOME/.config/hypr/hyprland.conf" ]; then
     rm -f "$HOME/.config/hypr/hyprland.conf"
