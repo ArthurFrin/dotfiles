@@ -43,3 +43,6 @@ cat > ~/.icons/default/index.theme <<'EOF'
 Inherits=Bibata-Modern-Ice
 EOF
 ```
+
+### doc walker
+`https://walkerlauncher.com/docs/theming`
