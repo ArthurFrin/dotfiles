@@ -1,24 +1,19 @@
 #!/bin/bash
 
-### ─────────────────────────────
-###  Base menu system – Style Omarchy
-### ─────────────────────────────
-
 menu() {
   local prompt="$1"
   local options="$2"
 
   printf "%b" "$options" \
-    | walker --dmenu --width 280 -p "$prompt…" \
-    2>/dev/null
+    | walker --dmenu --width 280 -p "$prompt…" 2>/dev/null
 }
 
 ### ─────────────────────────────
-###  Sub-menus
+###  Sous-menus
 ### ─────────────────────────────
 
 show_apps_menu() {
-  walker -p "Applications…"
+  walker -p "Applications…" .
 }
 
 show_install_menu() {
@@ -26,28 +21,18 @@ show_install_menu() {
 " Install package
 󱣱 Install AUR package
 ")" in
-    *"Install package"*) kitty -e sudo pacman -S ;;
-    *"Install AUR"*) kitty -e yay -S ;;
+    *"Install package"*) walker -p "Install…" "! install " ;;
+    *"Install AUR"*)     walker -p "Install AUR…" "!! install " ;;
     *) show_main_menu ;;
   esac
 }
 
 show_remove_menu() {
-  case "$(menu 'Remove' \
-" Remove package
-")" in
-    *"Remove") kitty -e sudo pacman -Rns ;;
-    *) show_main_menu ;;
-  esac
+  walker -p "Remove…" "! remove "
 }
 
 show_update_menu() {
-  case "$(menu 'Update' \
-" Update system
-")" in
-    *Update*) kitty -e sudo pacman -Syu ;;
-    *) show_main_menu ;;
-  esac
+  walker -p "System Update…" "! update"
 }
 
 show_system_menu() {
@@ -66,7 +51,7 @@ show_system_menu() {
 }
 
 ### ─────────────────────────────
-### Menu principal
+###  Menu principal
 ### ─────────────────────────────
 
 show_main_menu() {
@@ -78,15 +63,11 @@ show_main_menu() {
  System
 ")" in
     *Applications*) show_apps_menu ;;
-    *Install*) show_install_menu ;;
-    *Remove*) show_remove_menu ;;
-    *Update*) show_update_menu ;;
-    *System*) show_system_menu ;;
+    *Install*)      show_install_menu ;;
+    *Remove*)       show_remove_menu ;;
+    *Update*)       show_update_menu ;;
+    *System*)       show_system_menu ;;
   esac
 }
-
-### ─────────────────────────────
-### Lancement
-### ─────────────────────────────
 
 show_main_menu
