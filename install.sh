@@ -1,19 +1,15 @@
 #!/bin/bash
 
-# --- Variables ---
-SDDM_THEME="chili-sddm-theme"     # ou "sddm-astronaut-theme"
-SDDM_THEME_NAME="chili"           # ou "astronaut"
-
 # --- Paquets ---
-PACMAN_PKGS="hyprland waybar kitty alacritty ttf-dejavu nerd-fonts base-devel git stow firefox zsh sddm hyprpaper vim fastfetch"
-YAY_PKGS="zen-browser-bin $SDDM_THEME bibata-cursor-theme-bin bauh wofi walker elephant elephant-symbols elephant-desktopapplications elephant-calc elephant-websearch elephant-clipboard elephant-files"
+PACMAN_PKGS="hyprland waybar kitty alacritty ttf-dejavu nerd-fonts noto-fonts-emoji base-devel git stow firefox zsh hyprpaper vim fastfetch greetd tuigreet"
+YAY_PKGS="bibata-cursor-theme-bin wofi walker elephant elephant-symbols elephant-desktopapplications elephant-calc elephant-websearch elephant-clipboard elephant-files"
 
 echo "$HOME"
 
 # --- Officiels ---
 sudo pacman -Syu --noconfirm $PACMAN_PKGS
 
-# --- yay ---
+# --- yay installation ---
 if ! command -v yay &> /dev/null; then
   sudo pacman -S --needed git base-devel
   git clone https://aur.archlinux.org/yay.git
@@ -21,7 +17,7 @@ if ! command -v yay &> /dev/null; then
   cd .. && rm -rf yay
 fi
 
-# --- AUR (Discord, Zen, Thème SDDM) ---
+# --- AUR ---
 yay -S --noconfirm $YAY_PKGS
 
 # --- Masquage d'applications inutiles ---
@@ -42,12 +38,12 @@ DESKTOP_HIDE=(
 for f in "${DESKTOP_HIDE[@]}"; do
     if [ -f "/usr/share/applications/$f" ]; then
         cp "/usr/share/applications/$f" "$DESKTOP_DIR/$f"
-        echo "NoDisplay=true" >> "$DESKTOP_DIR/$f"
-        echo "→ Masqué : $f"
+        echo "Hidden=true" >> "$DESKTOP_DIR/$f"
+        echo "→ Masqué (Hidden=true) : $f"
     fi
 done
 
-# Supprimer config Hyprland par défaut si présente
+# --- Supprimer config Hyprland par défaut si présente ---
 if [ -f "$HOME/.config/hypr/hyprland.conf" ]; then
     rm -f "$HOME/.config/hypr/hyprland.conf"
 fi
@@ -56,12 +52,21 @@ cd "$HOME/dotfiles"
 
 # --- Stow configs ---
 stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
-sudo stow --target=/ sddm
+sudo stow --target=/ greetd
 
-# --- Activer SDDM ---
-sudo systemctl enable sddm
 
-# --- Zsh par défaut ---
+# --- Création automatique de l'utilisateur 'greeter' ---
+if ! id greeter &>/dev/null; then
+    echo "→ Création de l'utilisateur greeter"
+    sudo useradd -r -s /usr/bin/nologin greeter
+    sudo usermod -aG video greeter
+fi
+
+# --- Activer greetd ---
+sudo systemctl disable sddm.service --now 2>/dev/null || true
+sudo systemctl enable greetd --now
+
+# --- Shell par défaut ---
 chsh -s /bin/zsh
 
 # --- Starship ---
@@ -71,12 +76,9 @@ fi
 
 # --- zsh-autosuggestions ---
 ZSH_CUSTOM="$HOME/.zsh"
-if [ ! -d "$ZSH_CUSTOM" ]; then
-  mkdir -p "$ZSH_CUSTOM"
-fi
+mkdir -p "$ZSH_CUSTOM"
 if [ ! -d "$ZSH_CUSTOM/zsh-autosuggestions" ]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/zsh-autosuggestions"
 fi
-
 
 echo "✅ Installation terminée. Reboot recommandé."
