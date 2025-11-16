@@ -111,9 +111,10 @@ child:selected .item-box * {
   font-style: italic;
 }
 
-.keybind-hints * {
-  font-size: 0px;
-  color: transparent;
+.keybind-hints {
+  background: red;
+  padding: 10px;
+  margin-top: 10px;
 }
 
 
