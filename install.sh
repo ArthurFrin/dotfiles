@@ -5,7 +5,7 @@ SDDM_THEME="chili-sddm-theme"     # ou "sddm-astronaut-theme"
 SDDM_THEME_NAME="chili"           # ou "astronaut"
 
 # --- Paquets ---
-PACMAN_PKGS="hyprland waybar alacritty ttf-dejavu nerd-fonts base-devel git stow firefox zsh sddm hyprpaper vim fastfetch"
+PACMAN_PKGS="hyprland waybar alacritty ttf-dejavu nerd-fonts noto-fonts-emoji noto-color-emoji-fontconfig base-devel git stow firefox zsh sddm hyprpaper vim fastfetch"
 YAY_PKGS="zen-browser-bin $SDDM_THEME bibata-cursor-theme-bin bauh wofi walker elephant elephant-symbols elephant-desktopapplications elephant-calc elephant-websearch elephant-clipboard elephant-files"
 
 echo "$HOME"
