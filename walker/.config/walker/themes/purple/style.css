@@ -19,6 +19,14 @@ scrollbar {
   opacity: 0;
 }
 
+.keybind-hints {
+  display: none;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+}
+
+
 .normal-icons {
   -gtk-icon-size: 16px;
 }

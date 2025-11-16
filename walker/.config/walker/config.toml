@@ -1,9 +1,6 @@
 force_keyboard_focus = true                                                 # forces keyboard forcus to stay in Walker
 selection_wrap = true
 
-keybind_hints = false
-
-
 theme = "purple"
 
 [placeholders]
