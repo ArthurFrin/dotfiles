@@ -54,8 +54,7 @@ cd "$HOME/dotfiles"
 stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
 sudo stow --target=/ greetd
 
-
-# --- Création automatique de l'utilisateur 'greeter' ---
+# --- Création utilisateur greeter ---
 if ! id greeter &>/dev/null; then
     echo "→ Création de l'utilisateur greeter"
     sudo useradd -r -s /usr/bin/nologin greeter
