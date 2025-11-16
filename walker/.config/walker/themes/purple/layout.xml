@@ -59,12 +59,7 @@
                 <property name="vexpand-set">true</property>
                 <child>
                   <object class="GtkLabel" id="ElephantHint">
-                    <style>
-                      <class name="elephant-hint"></class>
-                    </style>
-                    <property name="hexpand">true</property>
-                    <property name="height-request">100</property>
-                    <property name="label">Waiting for elephant...</property>
+                    <property name="visible">false</property>
                   </object>
                 </child>
                 <child>
@@ -118,7 +113,7 @@
                   <class name="error"></class>
                 </style>
                 <property name="xalign">0</property>
-               <property name="visible">false</property>
+                <property name="visible">false</property>
               </object>
             </child>
           </object>
