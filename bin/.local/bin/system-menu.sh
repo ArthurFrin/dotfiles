@@ -1,6 +1,6 @@
 #!/bin/bash
 
-menu() {
+choice=$(
   printf "%s\n" \
     "󰀻  Applications" \
     "  Install package" \
@@ -9,9 +9,7 @@ menu() {
     "󰜉  Reboot" \
     "󰐥  Shutdown" \
   | walker --dmenu -p "Menu…" --width 260
-}
-
-choice="$(menu)"
+)
 
 case "$choice" in
   *Applications*) walker . ;;
