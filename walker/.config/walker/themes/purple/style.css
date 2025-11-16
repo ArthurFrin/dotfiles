@@ -112,7 +112,7 @@ child:selected .item-box * {
 }
 
 .keybind-hints {
-  background: red;
+  background: @background;
   padding: 10px;
   margin-top: 10px;
 }
