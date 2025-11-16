@@ -123,24 +123,3 @@ child:selected .item-box * {
 }
 
 
-.keybinds-wrapper {
-  border-top: 1px solid lighter(@window_bg_color);
-  font-size: 12px;
-  opacity: 0.5;
-  color: @theme_fg_color;
-}
-
-.keybinds {
-}
-
-.keybind {
-}
-
-.keybind-bind {
-  /* color: lighter(@window_bg_color); */
-  font-weight: bold;
-  text-transform: lowercase;
-}
-
-.keybind-label {
-}
