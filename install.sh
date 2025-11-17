@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- Paquets ---
-PACMAN_PKGS="hyprland waybar kitty alacritty ttf-jetbrains-mono-nerd noto-fonts-emoji base-devel git stow firefox zsh hyprpaper vim fastfetch greetd greetd-tuigreet cava"
+PACMAN_PKGS="hyprland waybar kitty alacritty ttf-jetbrains-mono-nerd noto-fonts-emoji base-devel git stow firefox zsh swaybg vim fastfetch greetd greetd-tuigreet cava"
 YAY_PKGS="bibata-cursor-theme-bin wofi walker elephant elephant-symbols elephant-desktopapplications elephant-calc elephant-websearch elephant-clipboard elephant-files"
 
 echo "$HOME"
@@ -85,14 +85,5 @@ sudo usermod -aG video,input,seat,tty greeter
 
 # --- Activer greetd ---
 sudo systemctl enable greetd
-
-# --- Protection du dossier .dotfiles ---
-DOTFILES="$HOME/.dotfiles"
-
-if [ -d "$DOTFILES" ]; then
-    echo "→ Protection du dossier .dotfiles"
-    sudo chattr +i "$DOTFILES"
-    sudo chattr -i "$DOTFILES"/* 2>/dev/null || true
-fi
 
 echo "✅ Installation terminée. Reboot recommandé."
