@@ -50,21 +50,6 @@ fi
 
 cd "$HOME/dotfiles"
 
-# --- Stow configs ---
-stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
-# sudo stow --target=/ greetd
-
-# # --- Création utilisateur greeter ---
-# if ! id greeter &>/dev/null; then
-#     echo "→ Création de l'utilisateur greeter"
-#     sudo useradd -r -s /usr/bin/nologin greeter
-#     sudo usermod -aG video greeter
-# fi
-
-# # --- Activer greetd ---
-# sudo systemctl disable sddm.service --now 2>/dev/null || true
-# sudo systemctl enable greetd --now
-
 # --- Shell par défaut ---
 chsh -s /bin/zsh
 
@@ -79,5 +64,25 @@ mkdir -p "$ZSH_CUSTOM"
 if [ ! -d "$ZSH_CUSTOM/zsh-autosuggestions" ]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/zsh-autosuggestions"
 fi
+
+# --- Stow configs ---
+stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
+
+# --- Config greetd ---
+sudo rm -f /etc/greetd/config.toml
+sudo stow --target=/ greetd
+
+# --- Création utilisateur greeter ---
+if ! id greeter &>/dev/null; then
+    echo "→ Création de l'utilisateur greeter"
+    sudo useradd -r -s /usr/bin/nologin greeter
+fi
+
+sudo usermod -aG video,input,seat,tty greeter
+
+# --- Activer greetd ---
+sudo systemctl enable greetd --now
+
+
 
 echo "✅ Installation terminée. Reboot recommandé."
