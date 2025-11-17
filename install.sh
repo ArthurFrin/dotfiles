@@ -48,7 +48,7 @@ if [ -f "$HOME/.config/hypr/hyprland.conf" ]; then
     rm -f "$HOME/.config/hypr/hyprland.conf"
 fi
 
-cd "$HOME/dotfiles"
+cd "$HOME/.dotfiles"
 
 # --- Shell par défaut ---
 chsh -s /bin/zsh
@@ -65,13 +65,15 @@ if [ ! -d "$ZSH_CUSTOM/zsh-autosuggestions" ]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/zsh-autosuggestions"
 fi
 
+# --- chmod +x scripts ---
+chmod +x bin/*
+
 # --- Stow configs ---
 stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
 
 # --- Config greetd ---
 sudo rm -f /etc/greetd/config.toml
 sudo stow --target=/ greetd
-
 
 # --- Création utilisateur greeter ---
 if ! id greeter &>/dev/null; then
@@ -80,9 +82,6 @@ if ! id greeter &>/dev/null; then
 fi
 
 sudo usermod -aG video,input,seat,tty greeter
-
-# --- Activer greetd ---
-sudo systemctl enable greetd
 
 # --- Activer greetd ---
 sudo systemctl enable greetd
