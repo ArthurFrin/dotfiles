@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # --- Paquets ---
-PACMAN_PKGS="hyprland waybar kitty alacritty ttf-jetbrains-mono-nerd noto-fonts-emoji base-devel git stow firefox zsh hyprpaper vim fastfetch greetd"
-YAY_PKGS="bibata-cursor-theme-bin wofi walker elephant elephant-symbols elephant-desktopapplications elephant-calc elephant-websearch elephant-clipboard elephant-files tuigreet"
+PACMAN_PKGS="hyprland waybar kitty alacritty ttf-jetbrains-mono-nerd noto-fonts-emoji base-devel git stow firefox zsh hyprpaper vim fastfetch greetd greetd-tuigreet"
+YAY_PKGS="bibata-cursor-theme-bin wofi walker elephant elephant-symbols elephant-desktopapplications elephant-calc elephant-websearch elephant-clipboard elephant-files"
 
 echo "$HOME"
 
@@ -68,13 +68,32 @@ fi
 # --- Stow configs ---
 stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
 
-# --- Config greetd ---
-sudo rm -f /etc/greetd/config.toml
+# --- Déploiement du CSS greetd via stow ---
 sudo stow --target=/ greetd
+
+# --- Détection de l'utilisateur réel ---
+CURRENT_USER="$(logname)"
+
+# --- Génération de la config greetd ---
+sudo tee /etc/greetd/config.toml >/dev/null <<EOF
+[terminal]
+vt = 1
+
+[default_session]
+command = "/usr/bin/tuigreet \
+ --style dark \
+ --css /usr/share/greetd/style.css \
+ --scaled \
+ --remember \
+ --time \
+ --asterisks \
+ --user ${CURRENT_USER} \
+ --cmd Hyprland"
+user = "greeter"
+EOF
 
 # --- Création utilisateur greeter ---
 if ! id greeter &>/dev/null; then
-    echo "→ Création de l'utilisateur greeter"
     sudo useradd -r -s /usr/bin/nologin greeter
 fi
 
