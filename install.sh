@@ -66,7 +66,7 @@ if [ ! -d "$ZSH_CUSTOM/zsh-autosuggestions" ]; then
 fi
 
 # --- chmod +x scripts ---
-chmod +x bin/*
+chmod +x "$HOME/.local/bin/*"
 
 # --- Stow configs ---
 stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
