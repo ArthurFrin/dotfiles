@@ -68,32 +68,14 @@ fi
 # --- Stow configs ---
 stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
 
-# --- Déploiement du CSS greetd via stow ---
+# --- Config greetd ---
+sudo rm -f /etc/greetd/config.toml
 sudo stow --target=/ greetd
 
-# --- Détection de l'utilisateur réel ---
-CURRENT_USER="$(logname)"
-
-# --- Génération de la config greetd ---
-sudo tee /etc/greetd/config.toml >/dev/null <<EOF
-[terminal]
-vt = 1
-
-[default_session]
-command = "/usr/bin/tuigreet \
- --style dark \
- --css /usr/share/greetd/style.css \
- --scaled \
- --remember \
- --time \
- --asterisks \
- --user ${CURRENT_USER} \
- --cmd Hyprland"
-user = "greeter"
-EOF
 
 # --- Création utilisateur greeter ---
 if ! id greeter &>/dev/null; then
+    echo "→ Création de l'utilisateur greeter"
     sudo useradd -r -s /usr/bin/nologin greeter
 fi
 
