@@ -82,8 +82,18 @@ fi
 sudo usermod -aG video,input,seat,tty greeter
 
 # --- Activer greetd ---
-sudo systemctl enable greetd --now
+sudo systemctl enable greetd
 
+# --- Activer greetd ---
+sudo systemctl enable greetd
 
+# --- Protection du dossier .dotfiles ---
+DOTFILES="$HOME/.dotfiles"
+
+if [ -d "$DOTFILES" ]; then
+    echo "→ Protection du dossier .dotfiles"
+    sudo chattr +i "$DOTFILES"
+    sudo chattr -i "$DOTFILES"/* 2>/dev/null || true
+fi
 
 echo "✅ Installation terminée. Reboot recommandé."
