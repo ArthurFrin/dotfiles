@@ -52,18 +52,18 @@ cd "$HOME/dotfiles"
 
 # --- Stow configs ---
 stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
-sudo stow --target=/ greetd
+# sudo stow --target=/ greetd
 
-# --- Création utilisateur greeter ---
-if ! id greeter &>/dev/null; then
-    echo "→ Création de l'utilisateur greeter"
-    sudo useradd -r -s /usr/bin/nologin greeter
-    sudo usermod -aG video greeter
-fi
+# # --- Création utilisateur greeter ---
+# if ! id greeter &>/dev/null; then
+#     echo "→ Création de l'utilisateur greeter"
+#     sudo useradd -r -s /usr/bin/nologin greeter
+#     sudo usermod -aG video greeter
+# fi
 
-# --- Activer greetd ---
-sudo systemctl disable sddm.service --now 2>/dev/null || true
-sudo systemctl enable greetd --now
+# # --- Activer greetd ---
+# sudo systemctl disable sddm.service --now 2>/dev/null || true
+# sudo systemctl enable greetd --now
 
 # --- Shell par défaut ---
 chsh -s /bin/zsh
