@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- Paquets ---
-PACMAN_PKGS="hyprland waybar kitty alacritty ttf-jetbrains-mono-nerd noto-fonts-emoji base-devel git stow firefox zsh swaybg vim fastfetch greetd greetd-tuigreet cava"
+PACMAN_PKGS="hyprland waybar kitty alacritty ttf-jetbrains-mono-nerd noto-fonts-emoji base-devel git stow firefox zsh swaybg vim fastfetch greetd greetd-tuigreet cava nvm"
 YAY_PKGS="bibata-cursor-theme-bin wofi walker elephant elephant-symbols elephant-desktopapplications elephant-calc elephant-websearch elephant-clipboard elephant-files"
 
 echo "$HOME"
