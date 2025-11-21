@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # --- Paquets ---
-PACMAN_PKGS="hyprland waybar kitty alacritty ttf-jetbrains-mono-nerd noto-fonts-emoji base-devel git stow firefox zsh swaybg vim fastfetch greetd greetd-tuigreet cava nvm"
+PACMAN_PKGS="hyprland waybar kitty alacritty ttf-jetbrains-mono-nerd noto-fonts-emoji base-devel git stow firefox zsh hyprpaper vim fastfetch greetd greetd-tuigreet cava nvm"
 YAY_PKGS="bibata-cursor-theme-bin wofi walker elephant elephant-symbols elephant-desktopapplications elephant-calc elephant-websearch elephant-clipboard elephant-files"
 
 echo "$HOME"
@@ -66,7 +66,8 @@ if [ ! -d "$ZSH_CUSTOM/zsh-autosuggestions" ]; then
 fi
 
 # --- chmod +x scripts ---
-chmod +x "$HOME/.local/bin/*"
+chmod +x "$HOME/.local/bin/system-menu.sh"
+chmod +x "$HOME/.local/bin/toggle-waybar.sh"
 
 # --- Stow configs ---
 stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alacritty
