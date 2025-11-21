@@ -76,6 +76,10 @@ stow --target="$HOME" bin hypr waybar wallpapers fastfetch kitty zsh walker alac
 sudo rm -f /etc/greetd/config.toml
 sudo stow --target=/ greetd
 
+# --- Fonts ---
+sudo stow --target=/ fonts
+fc-cache -fv
+
 # --- Création utilisateur greeter ---
 if ! id greeter &>/dev/null; then
     echo "→ Création de l'utilisateur greeter"
