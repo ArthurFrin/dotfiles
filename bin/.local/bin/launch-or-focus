@@ -6,15 +6,15 @@ if (($# < 2)); then
 fi
 
 APP_ID="$1"
-CMD="$2"
+CMD="${*:2}"
 
-# Recherche la fenêtre via UWSM
+# Recherche de la fenêtre via UWSM
 WINDOW=$(uwsmctl windows | awk -v id="$APP_ID" '$0 ~ id { print $1; exit }')
 
 if [[ -n "$WINDOW" ]]; then
-  # Focus si trouvée
+  # Focus si elle existe déjà
   uwsmctl focus-app "$APP_ID"
 else
-  # Sinon lancer l’application
+  # Sinon lancer l'application
   exec setsid $CMD
 fi
