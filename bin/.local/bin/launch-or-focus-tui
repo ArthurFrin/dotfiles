@@ -1,15 +1,15 @@
 #!/bin/bash
 
 if (($# == 0)); then
-  echo "Usage: launch-or-focus-tui [window-pattern] [launch-command]"
+  echo "Usage: launch-or-focus-tui [pattern] [cmd]"
   exit 1
 fi
 
-WINDOW_PATTERN="$1"
+PATTERN="$1"
 CMD="${2:-$1}"
 
-# Cherche une fenêtre dont le titre ou la classe correspond au pattern
-WINDOW_ADDRESS=$(hyprctl clients -j | jq -r --arg p "$WINDOW_PATTERN" '
+# Cherche une fenêtre existante correspondant au pattern
+WINDOW=$(hyprctl clients -j | jq -r --arg p "$PATTERN" '
   .[] |
   select(
     (.class | test($p; "i")) or
@@ -18,10 +18,10 @@ WINDOW_ADDRESS=$(hyprctl clients -j | jq -r --arg p "$WINDOW_PATTERN" '
   .address
 ' | head -n1)
 
-if [[ -n "$WINDOW_ADDRESS" ]]; then
-  # Focus sur la fenêtre existante
-  hyprctl dispatch focuswindow "address:$WINDOW_ADDRESS"
+if [[ -n "$WINDOW" ]]; then
+  # Focus si déjà ouvert
+  hyprctl dispatch focuswindow "address:$WINDOW"
 else
-  # Lance un terminal en floating + centré
-  hyprctl dispatch exec "[floating;center] foot -e $CMD"
+  # Terminal PAR DÉFAUT + floating + centrage
+  hyprctl dispatch exec "[floating;center] xdg-terminal-exec -e $CMD"
 fi
