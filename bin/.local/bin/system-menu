@@ -26,9 +26,15 @@ show_install_menu() {
 " Install package
 󱣱 Install AUR package
 ")" in
-    *"Install package"*) kitty -e sudo pacman -S ;;
-    *"Install AUR"*) kitty -e yay -S ;;
-    *) show_main_menu ;;
+    *"Install package"*)
+        hyprctl dispatch exec "[float;center] alacritty -e ~/.local/bin/install-arch"
+        ;;
+    *"Install AUR package"*)
+        hyprctl dispatch exec "[float;center] alacritty -e ~/.local/bin/install-aur"
+        ;;
+    *)
+        show_main_menu
+        ;;
   esac
 }
 
@@ -36,8 +42,12 @@ show_remove_menu() {
   case "$(menu 'Remove' \
 " Remove package
 ")" in
-    *"Remove") kitty -e sudo pacman -Rns ;;
-    *) show_main_menu ;;
+    *"Remove package"*)
+        hyprctl dispatch exec "[float;center] alacritty -e ~/.local/bin/remove-pkg"
+        ;;
+    *)
+        show_main_menu
+        ;;
   esac
 }
 
@@ -45,8 +55,12 @@ show_update_menu() {
   case "$(menu 'Update' \
 " Update system
 ")" in
-    *Update*) kitty -e sudo pacman -Syu ;;
-    *) show_main_menu ;;
+    *Update*)
+        hyprctl dispatch exec "[float;center] alacritty -e sudo pacman -Syu"
+        ;;
+    *)
+        show_main_menu
+        ;;
   esac
 }
 
@@ -61,7 +75,9 @@ show_system_menu() {
     *Shutdown*) systemctl poweroff ;;
     *Suspend*) systemctl suspend ;;
     *Lock*) hyprlock ;;
-    *) show_main_menu ;;
+    *)
+        show_main_menu
+        ;;
   esac
 }
 
