@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if (($# < 2)); then
+  echo "Usage: launch-or-focus <app-id> <launch-command>"
+  exit 1
+fi
+
+APP_ID="$1"
+CMD="$2"
+
+# Recherche la fenêtre via UWSM
+WINDOW=$(uwsmctl windows | awk -v id="$APP_ID" '$0 ~ id { print $1; exit }')
+
+if [[ -n "$WINDOW" ]]; then
+  # Focus si trouvée
+  uwsmctl focus-app "$APP_ID"
+else
+  # Sinon lancer l’application
+  exec setsid $CMD
+fi

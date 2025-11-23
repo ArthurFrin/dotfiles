@@ -1,27 +1,6 @@
 #!/bin/bash
 
-if (($# == 0)); then
-  echo "Usage: launch-or-focus-tui [pattern] [cmd]"
-  exit 1
-fi
+APP_ID="app.$(basename "$1")"
+LAUNCH_COMMAND="launch-tui $@"
 
-PATTERN="$1"
-CMD="${2:-$1}"
-
-# Cherche une fenêtre existante correspondant au pattern
-WINDOW=$(hyprctl clients -j | jq -r --arg p "$PATTERN" '
-  .[] |
-  select(
-    (.class | test($p; "i")) or
-    (.title | test($p; "i"))
-  ) |
-  .address
-' | head -n1)
-
-if [[ -n "$WINDOW" ]]; then
-  # Focus si déjà ouvert
-  hyprctl dispatch focuswindow "address:$WINDOW"
-else
-  # Terminal PAR DÉFAUT + floating + centrage
-  hyprctl dispatch exec "[floating;center] xdg-terminal-exec -e $CMD"
-fi
+exec launch-or-focus "$APP_ID" "$LAUNCH_COMMAND"
