@@ -1,27 +1,27 @@
 #!/bin/bash
 
 if (($# == 0)); then
-  echo "Usage: launch-or-focus-tui [pattern] [cmd]"
+  echo "Usage: launch-or-focus-tui [window-pattern] [launch-command]"
   exit 1
 fi
 
-PATTERN="$1"
+WINDOW_PATTERN="$1"
 CMD="${2:-$1}"
 
 # Cherche une fenêtre dont le titre ou la classe correspond au pattern
-WINDOW=$(hyprctl clients -j | jq -r --arg p "$PATTERN" '
+WINDOW_ADDRESS=$(hyprctl clients -j | jq -r --arg p "$WINDOW_PATTERN" '
   .[] |
   select(
-    (.class  | test($p; "i")) or
-    (.title  | test($p; "i"))
+    (.class | test($p; "i")) or
+    (.title | test($p; "i"))
   ) |
   .address
 ' | head -n1)
 
-if [[ -n "$WINDOW" ]]; then
+if [[ -n "$WINDOW_ADDRESS" ]]; then
   # Focus sur la fenêtre existante
-  hyprctl dispatch focuswindow "address:$WINDOW"
+  hyprctl dispatch focuswindow "address:$WINDOW_ADDRESS"
 else
-  # Lance dans un terminal flottant via uwsm-app
-  exec setsid uwsm-app -- xdg-terminal-exec --app-id="tui.$PATTERN" -e "$CMD"
+  # Lance un terminal en floating + centré
+  hyprctl dispatch exec "[floating;center] foot -e $CMD"
 fi
