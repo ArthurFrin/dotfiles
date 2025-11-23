@@ -52,7 +52,7 @@
   "custom/update": {
     "format": "",
     "exec": "omarchy-update-available",
-    "on-click": "launch-floating-terminal omarchy-update",
+    "on-click": "omarchy-launch-floating-terminal-with-presentation omarchy-update",
     "tooltip-format": "Omarchy update available",
     "signal": 7,
     "interval": 3600
@@ -61,13 +61,12 @@
   "cpu": {
     "interval": 5,
     "format": "󰍛",
-    "on-click": "launch-or-focus-tui btop"
+    "on-click": "hyprctl dispatch exec '[float;center] alacritty -e btop'"
   },
   "clock": {
     "format": "{:L%A %H:%M}",
     "format-alt": "{:L%d %B W%V %Y}",
-    "tooltip": false,
-    "on-click-right": "launch-floating-terminal omarchy-tz-select"
+    "tooltip": false
   },
   "custom/wg": {
   "exec": "bash -c 'ip link show afrin &>/dev/null && echo \"\" || echo \"\"'",
@@ -87,7 +86,7 @@
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
-    "on-click": "omarchy-launch-wifi"
+    "on-click": "hyprctl dispatch exec '[float;center] alacritty -e impala'"
   },
   "battery": {
     "format": "{capacity}% {icon}",
@@ -118,7 +117,7 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "on-click": "launch-or-focus-tui wiremix",
+    "on-click": "hyprctl dispatch exec '[float;center] alacritty -e wiremix'",
     "on-click-right": "pamixer -t",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
